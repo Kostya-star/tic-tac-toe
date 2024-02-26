@@ -4,7 +4,7 @@ import { Player } from 'types/Board';
 
 interface HeaderProps {
   score: Record<Player, number>;
-  resetGame: () => void;
+  resetGame: () => void
 }
 
 export const Header: FC<HeaderProps> = ({ score, resetGame }) => {
