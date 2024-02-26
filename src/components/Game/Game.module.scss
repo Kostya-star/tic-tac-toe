@@ -1,0 +1,17 @@
+.game {
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  background-color: black;
+  padding: 50px;
+}
+
+.content {
+  border: 1px solid gray;
+  padding: 10px;
+}
+
+.players {
+  display: flex;
+  justify-content: space-between;
+}
