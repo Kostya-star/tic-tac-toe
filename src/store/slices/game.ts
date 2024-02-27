@@ -71,11 +71,13 @@ export const gameSlice = createSlice({
     setIsPlayerX: (state) => {
       state.isPlayerX = !state.isPlayerX;
     },
-    resetGame: (state) => {
+    resetGame: (state, { payload: isResetScore }) => {
       state.board = Array(9).fill(null);
       state.isPlayerX = false;
       state.playersStatus = initialPlayersStatus;
-      // state.score = initialScore
+      if (isResetScore) {
+        state.score = initialScore;
+      }
     },
     setScore: (state, { payload: winner }: PayloadAction<PLAYERS>) => {
       state.score[winner]++;

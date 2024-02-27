@@ -26,13 +26,14 @@ export const Game = () => {
 
   const [isProgessBar, setProgressBar] = useState(false);
 
-  const onResetGameMemoized = useCallback((isResetScore?: boolean) => {
-    console.log(isResetScore);
-    
-    isGameStarted.current = false;
-    dispatch(resetGame());
-    setProgressBar(false);
-  }, [dispatch]);
+  const onResetGameMemoized = useCallback(
+    (isResetScore: boolean = false) => {
+      isGameStarted.current = false;
+      dispatch(resetGame(isResetScore));
+      setProgressBar(false);
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     if (!isGameStarted.current) {
@@ -95,7 +96,9 @@ export const Game = () => {
         </div>
 
         <div className={cls.reset_game}>
-          <Button type='success' onClick={onResetGameMemoized}>New Game</Button>
+          <Button type="success" onClick={onResetGameMemoized}>
+            New Game
+          </Button>
         </div>
 
         {isProgessBar ? <ProgressLinear /> : null}
