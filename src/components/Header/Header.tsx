@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import cls from './Header.module.scss';
-import { Player } from 'types/Board';
+import { PLAYERS } from 'types/Board';
 
 interface HeaderProps {
-  score: Record<Player, number>;
+  score: Record<PLAYERS, number>;
   resetGame: () => void
 }
 

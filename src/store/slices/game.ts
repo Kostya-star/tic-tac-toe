@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { BoardType, Player } from 'types/Board';
+import { BoardType, PLAYERS } from 'types/Board';
 import { GAME_STATUS, PLAYER_STATUS } from 'types/GameStatus';
 
 interface StatusPayload {
   status: GAME_STATUS;
-  winner?: Player;
+  winner?: PLAYERS;
 }
 
 const initialPlayersStatus = {
@@ -21,8 +21,8 @@ const initialScore = {
 export interface GameState {
   board: BoardType;
   isPlayerX: boolean;
-  playersStatus: Record<Player, PLAYER_STATUS>;
-  score: Record<Player, number>;
+  playersStatus: Record<PLAYERS, PLAYER_STATUS>;
+  score: Record<PLAYERS, number>;
 }
 
 const initialState: GameState = {
@@ -37,7 +37,7 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     squareClick: (state, { payload: cellInd }: PayloadAction<number>) => {
-      state.board[cellInd] = state.isPlayerX ? 'X' : 'O';
+      state.board[cellInd] = state.isPlayerX ? PLAYERS.PLAYER_X : PLAYERS.PLAYER_O;
     },
     setPlayersStatus: (state, { payload }: PayloadAction<StatusPayload>) => {
       const { status, winner } = payload;
@@ -45,8 +45,8 @@ export const gameSlice = createSlice({
       switch (status) {
         case GAME_STATUS.WIN_LOST:
           state.playersStatus = {
-            X: winner === 'X' ? PLAYER_STATUS.WIN : PLAYER_STATUS.LOST,
-            O: winner === 'O' ? PLAYER_STATUS.WIN : PLAYER_STATUS.LOST,
+            X: winner === PLAYERS.PLAYER_X ? PLAYER_STATUS.WIN : PLAYER_STATUS.LOST,
+            O: winner === PLAYERS.PLAYER_O ? PLAYER_STATUS.WIN : PLAYER_STATUS.LOST,
           };
           break;
 
@@ -75,9 +75,9 @@ export const gameSlice = createSlice({
       state.board = Array(9).fill(null);
       state.isPlayerX = false;
       state.playersStatus = initialPlayersStatus;
-      state.score = initialScore
+      // state.score = initialScore
     },
-    setScore: (state, { payload: winner }: PayloadAction<Player>) => {
+    setScore: (state, { payload: winner }: PayloadAction<PLAYERS>) => {
       state.score[winner]++;
     },
   },

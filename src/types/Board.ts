@@ -1,3 +1,7 @@
-export type Player = 'X' | 'O';
+export enum PLAYERS {
+  PLAYER_X = 'X',
+  PLAYER_O = 'O',
+}
 
-export type BoardType = (Player | null)[];
+export type BoardType = (PLAYERS | null)[];
+
