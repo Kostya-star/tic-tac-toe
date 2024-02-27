@@ -1,12 +1,14 @@
 import { Header } from 'components/Header/Header';
 import cls from './Game.module.scss';
 import { PlayerScreen } from 'components/PlayerScreen/PlayerScreen';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { GAME_STATUS } from 'types/GameStatus';
 import { resetGame, setIsPlayerX, setPlayersStatus, setScore, squareClick } from 'store/slices/game';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { calculateWinner } from 'utils/calculateWinner';
 import { PLAYERS } from 'types/Board';
+
+const TIMEOUT_DELAY = 5000
 
 export const Game = () => {
   const { board, playersStatus, score, isPlayerXTurn } = useAppSelector(({ game }) => ({
@@ -20,9 +22,12 @@ export const Game = () => {
 
   const isGameStarted = useRef(false);
 
+  const [isProgessBar, setProgressBar] = useState(false);
+
   const onResetGameMemoized = useCallback(() => {
     isGameStarted.current = false;
     dispatch(resetGame());
+    setProgressBar(false);
   }, [dispatch]);
 
   useEffect(() => {
@@ -37,12 +42,20 @@ export const Game = () => {
     if (winner) {
       dispatch(setPlayersStatus({ status: GAME_STATUS.WIN_LOST, winner }));
       dispatch(setScore(winner));
+      setProgressBar(true);
 
-      resetTimer = setTimeout(onResetGameMemoized, 5000);
+      resetTimer = setTimeout(() => {
+        onResetGameMemoized()
+        setProgressBar(false);
+      }, TIMEOUT_DELAY);
     } else if (board.every(Boolean)) {
       dispatch(setPlayersStatus({ status: GAME_STATUS.DRAW }));
+      setProgressBar(true);
 
-      resetTimer = setTimeout(onResetGameMemoized, 5000);
+      resetTimer = setTimeout(() => {
+        onResetGameMemoized()
+        setProgressBar(false);
+      }, TIMEOUT_DELAY);
     } else {
       dispatch(setIsPlayerX());
       dispatch(setPlayersStatus({ status: GAME_STATUS.PLAYING }));
@@ -76,6 +89,12 @@ export const Game = () => {
           <PlayerScreen board={board} status={playersStatus.X} player={PLAYERS.PLAYER_X} onSquareClick={onSquareClick} />
           <PlayerScreen board={board} status={playersStatus.O} player={PLAYERS.PLAYER_O} onSquareClick={onSquareClick} />
         </div>
+
+        {isProgessBar ? (
+          <div className={cls.progress_container}>
+            <div className={cls.progress_bar}></div>
+          </div>
+        ) : null}
       </div>
     </div>
   );

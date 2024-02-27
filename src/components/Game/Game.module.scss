@@ -7,11 +7,35 @@
 }
 
 .content {
-  border: 1px solid gray;
   padding: 10px;
 }
 
 .players {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.progress_container {
+  width: 100%;
+  height: 10px;
+  background-color: var(--dark-gray);
+  position: relative;
+}
+
+.progress_bar {
+  height: 100%;
+  background-color: var(--yellow);
+  width: 100%;
+  animation: progressAnimation 5s linear forwards;
+}
+
+@keyframes progressAnimation {
+  0% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0%;
+  }
 }
