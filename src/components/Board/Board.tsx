@@ -15,8 +15,10 @@ export const Board: FC<BoardProps> = ({ board, status, player, winCords, onCellC
   const isWin = status === PLAYER_STATUS.WIN;
   const isLost = status === PLAYER_STATUS.LOST;
 
+  // determine win-lost status to color the status
   const winLostStatus = isWin ? cls.status_win : isLost ? cls.status_lost : '';
 
+  // determine win cells to color them
   function isWinCell(cellInd: number) {
     return winCords.length && winCords.includes(cellInd);
   }

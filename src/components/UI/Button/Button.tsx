@@ -9,6 +9,7 @@ interface ButtonProps {
   onClick: () => void;
 }
 
+// custom reused button
 export const Button: FC<ButtonProps> = ({ children, type, onClick }) => {
   return (
     <button className={`${cls.button} ${cls[type]}`} onClick={() => onClick()}>

@@ -9,9 +9,9 @@
 .boards {
   display: flex;
   justify-content: space-between;
-  // align-items: end;
   margin-bottom: 20px;
 
+  // make the border between the boards
   > :first-child {
     border-right: 1px solid gray;
   }
@@ -23,6 +23,7 @@
   margin-bottom: 20px;
 }
 
+// MEDIA
 @media screen and (max-width: 768px) {
   .game {
     padding: 10px;

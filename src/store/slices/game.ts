@@ -23,7 +23,7 @@ export interface GameState {
   isPlayerX: boolean;
   playersStatus: Record<PLAYERS, PLAYER_STATUS>;
   score: Record<PLAYERS, number>;
-  winCords: number[]
+  winCords: number[];
 }
 
 const initialState: GameState = {
@@ -31,16 +31,20 @@ const initialState: GameState = {
   isPlayerX: false,
   playersStatus: initialPlayersStatus,
   score: initialScore,
-  winCords: []
+  // win cells coordinates
+  winCords: [],
 };
 
+// main game slice
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
+    // handle cell clicks
     squareClick: (state, { payload: cellInd }: PayloadAction<number>) => {
       state.board[cellInd] = state.isPlayerX ? PLAYERS.PLAYER_X : PLAYERS.PLAYER_O;
     },
+    // hanlde players statuses
     setPlayersStatus: (state, { payload }: PayloadAction<StatusPayload>) => {
       const { status, winner } = payload;
 
@@ -67,12 +71,15 @@ export const gameSlice = createSlice({
           break;
 
         default:
+          state.playersStatus = initialPlayersStatus;
           break;
       }
     },
+    // handle logic for determining the players turns
     setIsPlayerX: (state) => {
       state.isPlayerX = !state.isPlayerX;
     },
+    // reset game and optionally the score
     resetGame: (state, { payload: isResetScore }) => {
       state.board = Array(9).fill(null);
       state.isPlayerX = false;
@@ -81,16 +88,24 @@ export const gameSlice = createSlice({
         state.score = initialScore;
       }
     },
+    // handle score
     setScore: (state, { payload: winner }: PayloadAction<PLAYERS>) => {
       state.score[winner]++;
     },
+    // set the coordinates for the win line
     setWinLine: (state, { payload: coordinates }: PayloadAction<number[]>) => {
-      state.winCords = coordinates
-    }
+      state.winCords = coordinates;
+    },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { squareClick, setPlayersStatus, setIsPlayerX, resetGame, setScore, setWinLine } = gameSlice.actions;
+export const { 
+  squareClick, 
+  setPlayersStatus, 
+  setIsPlayerX, 
+  resetGame, 
+  setScore, 
+  setWinLine 
+} = gameSlice.actions;
 
 export default gameSlice.reducer;
