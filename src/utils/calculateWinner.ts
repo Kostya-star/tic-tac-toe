@@ -19,7 +19,11 @@ export const calculateWinner = (board: BoardType) => {
     const [a, b, c] = line;
 
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-      return board[a]; // Return the symbol of the winner (X or O)
+      // return board[a]; // Return the symbol of the winner (X or O)
+      return {
+        winner: board[a],
+        line
+      }
     }
   }
 

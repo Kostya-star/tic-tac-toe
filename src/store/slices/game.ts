@@ -23,6 +23,7 @@ export interface GameState {
   isPlayerX: boolean;
   playersStatus: Record<PLAYERS, PLAYER_STATUS>;
   score: Record<PLAYERS, number>;
+  winCords: number[]
 }
 
 const initialState: GameState = {
@@ -30,6 +31,7 @@ const initialState: GameState = {
   isPlayerX: false,
   playersStatus: initialPlayersStatus,
   score: initialScore,
+  winCords: []
 };
 
 export const gameSlice = createSlice({
@@ -82,10 +84,13 @@ export const gameSlice = createSlice({
     setScore: (state, { payload: winner }: PayloadAction<PLAYERS>) => {
       state.score[winner]++;
     },
+    setWinLine: (state, { payload: coordinates }: PayloadAction<number[]>) => {
+      state.winCords = coordinates
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { squareClick, setPlayersStatus, setIsPlayerX, resetGame, setScore } = gameSlice.actions;
+export const { squareClick, setPlayersStatus, setIsPlayerX, resetGame, setScore, setWinLine } = gameSlice.actions;
 
 export default gameSlice.reducer;

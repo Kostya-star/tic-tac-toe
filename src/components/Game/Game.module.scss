@@ -10,7 +10,7 @@
   // padding: 10px;
 }
 
-.players {
+.boards {
   display: flex;
   justify-content: space-between;
   // align-items: end;
@@ -23,4 +23,5 @@
 .reset_game {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
