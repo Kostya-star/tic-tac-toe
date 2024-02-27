@@ -6,22 +6,25 @@
   padding: 50px;
 }
 
-.content {
-  // padding: 10px;
-}
-
 .boards {
   display: flex;
   justify-content: space-between;
   // align-items: end;
   margin-bottom: 20px;
+
   > :first-child {
     border-right: 1px solid gray;
   }
 }
 
-.reset_game {
+.restart_game {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .game {
+    padding: 10px;
+  }
 }

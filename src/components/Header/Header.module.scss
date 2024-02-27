@@ -12,3 +12,18 @@
   align-items: center;
   gap: 10px;
 }
+
+@media screen and (max-width: 650px) {
+  .header {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .playerX, .playerO {
+    display: none;
+  }
+  .header {
+    justify-content: center;
+  }
+}

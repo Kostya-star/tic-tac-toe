@@ -1,6 +1,6 @@
 export enum PLAYERS {
-  PLAYER_X = 'X',
-  PLAYER_O = 'O',
+  PLAYER_X = 'x',
+  PLAYER_O = 'o',
 }
 
 export type BoardType = (PLAYERS | null)[];

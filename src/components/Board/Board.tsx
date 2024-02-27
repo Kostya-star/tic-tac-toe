@@ -18,7 +18,7 @@ export const Board: FC<BoardProps> = ({ board, status, player, winCords, onCellC
   const winLostStatus = isWin ? cls.status_win : isLost ? cls.status_lost : '';
 
   function isWinCell(cellInd: number) {
-    return winCords.length && winCords.includes(cellInd)
+    return winCords.length && winCords.includes(cellInd);
   }
 
   return (

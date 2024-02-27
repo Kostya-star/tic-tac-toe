@@ -96,23 +96,23 @@ export const Game = () => {
         <div className={cls.boards}>
           <Board 
             board={board} 
-            status={playersStatus.X} 
+            status={playersStatus.x} 
             player={PLAYERS.PLAYER_X} 
             winCords={winCords} 
             onCellClick={onCellClick} 
           />
           <Board 
             board={board} 
-            status={playersStatus.O} 
+            status={playersStatus.o} 
             player={PLAYERS.PLAYER_O} 
             winCords={winCords} 
             onCellClick={onCellClick} 
           />
         </div>
 
-        <div className={cls.reset_game}>
+        <div className={cls.restart_game}>
           <Button type="success" onClick={onResetGameMemoized}>
-            New Game
+            Restart Game
           </Button>
         </div>
 

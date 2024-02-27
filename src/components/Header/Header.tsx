@@ -11,16 +11,16 @@ interface HeaderProps {
 export const Header: FC<HeaderProps> = ({ score, resetGame }) => {
   return (
     <div className={cls.header}>
-      <div>Player 1</div>
+      <div className={cls.playerX}>Player 1</div>
       <div className={cls.score}>
         <span>
-          Score: {score.X}:{score.O}
+          Score: {score.x}:{score.o}
         </span>
         <Button onClick={resetGame} type="success">
           Reset
         </Button>
       </div>
-      <div>Player 2</div>
+      <div className={cls.playerO}>Player 2</div>
     </div>
   );
 };

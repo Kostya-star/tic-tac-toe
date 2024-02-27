@@ -9,13 +9,13 @@ interface StatusPayload {
 }
 
 const initialPlayersStatus = {
-  X: PLAYER_STATUS.GAME_START_WAIT,
-  O: PLAYER_STATUS.GAME_START_TURN,
+  x: PLAYER_STATUS.GAME_START_WAIT,
+  o: PLAYER_STATUS.GAME_START_TURN,
 };
 
 const initialScore = {
-  X: 0,
-  O: 0,
+  x: 0,
+  o: 0,
 };
 
 export interface GameState {
@@ -47,22 +47,22 @@ export const gameSlice = createSlice({
       switch (status) {
         case GAME_STATUS.WIN_LOST:
           state.playersStatus = {
-            X: winner === PLAYERS.PLAYER_X ? PLAYER_STATUS.WIN : PLAYER_STATUS.LOST,
-            O: winner === PLAYERS.PLAYER_O ? PLAYER_STATUS.WIN : PLAYER_STATUS.LOST,
+            x: winner === PLAYERS.PLAYER_X ? PLAYER_STATUS.WIN : PLAYER_STATUS.LOST,
+            o: winner === PLAYERS.PLAYER_O ? PLAYER_STATUS.WIN : PLAYER_STATUS.LOST,
           };
           break;
 
         case GAME_STATUS.DRAW:
           state.playersStatus = {
-            X: PLAYER_STATUS.DRAW,
-            O: PLAYER_STATUS.DRAW,
+            x: PLAYER_STATUS.DRAW,
+            o: PLAYER_STATUS.DRAW,
           };
           break;
 
         case GAME_STATUS.PLAYING:
           state.playersStatus = {
-            X: state.isPlayerX ? PLAYER_STATUS.YOUR_TURN : PLAYER_STATUS.WAIT_OPPONENT,
-            O: state.isPlayerX ? PLAYER_STATUS.WAIT_OPPONENT : PLAYER_STATUS.YOUR_TURN,
+            x: state.isPlayerX ? PLAYER_STATUS.YOUR_TURN : PLAYER_STATUS.WAIT_OPPONENT,
+            o: state.isPlayerX ? PLAYER_STATUS.WAIT_OPPONENT : PLAYER_STATUS.YOUR_TURN,
           };
           break;
 
