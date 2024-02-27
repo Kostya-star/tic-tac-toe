@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { calculateWinner } from 'utils/calculateWinner';
 import { PLAYERS } from 'types/Board';
 
-const TIMEOUT_DELAY = 5000
+const TIMEOUT_DELAY = 5000;
 
 export const Game = () => {
   const { board, playersStatus, score, isPlayerXTurn } = useAppSelector(({ game }) => ({
@@ -45,7 +45,7 @@ export const Game = () => {
       setProgressBar(true);
 
       resetTimer = setTimeout(() => {
-        onResetGameMemoized()
+        onResetGameMemoized();
         setProgressBar(false);
       }, TIMEOUT_DELAY);
     } else if (board.every(Boolean)) {
@@ -53,7 +53,7 @@ export const Game = () => {
       setProgressBar(true);
 
       resetTimer = setTimeout(() => {
-        onResetGameMemoized()
+        onResetGameMemoized();
         setProgressBar(false);
       }, TIMEOUT_DELAY);
     } else {
@@ -83,16 +83,18 @@ export const Game = () => {
 
   return (
     <div className={cls.game}>
+      <Header resetGame={onResetGameMemoized} score={score} />
       <div className={cls.content}>
-        <Header resetGame={onResetGameMemoized} score={score} />
         <div className={cls.players}>
           <PlayerScreen board={board} status={playersStatus.X} player={PLAYERS.PLAYER_X} onSquareClick={onSquareClick} />
           <PlayerScreen board={board} status={playersStatus.O} player={PLAYERS.PLAYER_O} onSquareClick={onSquareClick} />
         </div>
 
         {isProgessBar ? (
-          <div className={cls.progress_container}>
-            <div className={cls.progress_bar}></div>
+          <div className={cls.progress}>
+            <div className={cls.progress_container}>
+              <div className={cls.progress_bar}></div>
+            </div>
           </div>
         ) : null}
       </div>
