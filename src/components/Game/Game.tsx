@@ -9,18 +9,13 @@ import { PLAYERS } from 'types/Board';
 import { ProgressLinear } from 'components/UI/ProgressLinear/ProgressLinear';
 import { Button } from 'components/UI/Button/Button';
 import { Board } from 'components/Board/Board';
+import { selectGameInfo } from 'store/selectors';
 
 // delay after the game is over before the new game
 const TIMEOUT_DELAY = 5000;
 
 export const Game = () => {
-  const { board, playersStatus, score, isPlayerXTurn, winCords } = useAppSelector(({ game }) => ({
-    board: game.board, // [x, o, null, x, null.....]
-    playersStatus: game.playersStatus, // current players statuses
-    score: game.score,
-    isPlayerXTurn: game.isPlayerX, // get players turn
-    winCords: game.winCords, // win coordinates for cells
-  }));
+  const { board, playersStatus, score, isPlayerXTurn, winCords } = useAppSelector(selectGameInfo);
 
   const dispatch = useAppDispatch();
 

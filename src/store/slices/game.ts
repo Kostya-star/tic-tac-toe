@@ -99,13 +99,6 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { 
-  squareClick, 
-  setPlayersStatus, 
-  setIsPlayerX, 
-  resetGame, 
-  setScore, 
-  setWinLine 
-} = gameSlice.actions;
+export const { squareClick, setPlayersStatus, setIsPlayerX, resetGame, setScore, setWinLine } = gameSlice.actions;
 
 export default gameSlice.reducer;
