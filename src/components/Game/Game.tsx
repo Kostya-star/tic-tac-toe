@@ -7,6 +7,8 @@ import { resetGame, setIsPlayerX, setPlayersStatus, setScore, squareClick } from
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { calculateWinner } from 'utils/calculateWinner';
 import { PLAYERS } from 'types/Board';
+import { ProgressLinear } from 'components/UI/ProgressLinear/ProgressLinear';
+import { Button } from 'components/UI/Button/Button';
 
 const TIMEOUT_DELAY = 5000;
 
@@ -24,7 +26,9 @@ export const Game = () => {
 
   const [isProgessBar, setProgressBar] = useState(false);
 
-  const onResetGameMemoized = useCallback(() => {
+  const onResetGameMemoized = useCallback((isResetScore?: boolean) => {
+    console.log(isResetScore);
+    
     isGameStarted.current = false;
     dispatch(resetGame());
     setProgressBar(false);
@@ -83,20 +87,18 @@ export const Game = () => {
 
   return (
     <div className={cls.game}>
-      <Header resetGame={onResetGameMemoized} score={score} />
+      <Header resetGame={() => onResetGameMemoized(true)} score={score} />
       <div className={cls.content}>
         <div className={cls.players}>
           <PlayerScreen board={board} status={playersStatus.X} player={PLAYERS.PLAYER_X} onSquareClick={onSquareClick} />
           <PlayerScreen board={board} status={playersStatus.O} player={PLAYERS.PLAYER_O} onSquareClick={onSquareClick} />
         </div>
 
-        {isProgessBar ? (
-          <div className={cls.progress}>
-            <div className={cls.progress_container}>
-              <div className={cls.progress_bar}></div>
-            </div>
-          </div>
-        ) : null}
+        <div className={cls.reset_game}>
+          <Button type='success' onClick={onResetGameMemoized}>New Game</Button>
+        </div>
+
+        {isProgessBar ? <ProgressLinear /> : null}
       </div>
     </div>
   );

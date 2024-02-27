@@ -21,7 +21,7 @@ export const PlayerScreen: FC<PlayerScreenProps> = ({ board, status, player, onS
     <div className={cls.screen}>
       <div className={`${cls.status} ${winLostStatus}`}>{status}</div>
       <Board board={board} player={player} onSquareClick={onSquareClick} />
-      <span>chat</span>
+      {/* <span>chat</span> */}
     </div>
   );
 };

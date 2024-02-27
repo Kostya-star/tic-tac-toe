@@ -7,42 +7,20 @@
 }
 
 .content {
-  padding: 10px;
+  // padding: 10px;
 }
 
 .players {
   display: flex;
   justify-content: space-between;
+  // align-items: end;
   margin-bottom: 20px;
   > :first-child {
     border-right: 1px solid gray;
   }
 }
 
-.progress {
+.reset_game {
   display: flex;
   justify-content: center;
-  &_container {
-    display: flex;
-    justify-content: center;
-    width: 50%;
-    height: 10px;
-    background-color: var(--dark-gray);
-    position: relative;
-  }
-  &_bar {
-    height: 100%;
-    background-color: var(--yellow);
-    width: 100%;
-    animation: progressAnimation 5s linear forwards;
-    @keyframes progressAnimation {
-      0% {
-        width: 100%;
-      }
-    
-      100% {
-        width: 0%;
-      }
-    }
-  }
 }
